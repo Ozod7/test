@@ -11,4 +11,7 @@
     </div>
 {% empty %}
     <p>Фильмов нет</p>
+    <p>
+    <a href="{% url 'film_list' %}">← Назад </a>
+</p>
 {% endfor %}

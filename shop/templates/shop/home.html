@@ -1,35 +1,138 @@
-<h1>Каталог</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог</title>
 
-<h2>Мультфильмы</h2>
-{% if cartoons %}
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f5f5f5;
+            padding-bottom: 50px;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #222;
+            font-size: 42px;
+        }
+
+        .section-title {
+            margin-top: 40px;
+            font-size: 32px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            width: 230px;
+            border-radius: 15px;
+            transition: 0.3s ease;
+        }
+
+        
+
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .card-title {
+            margin-top: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #111;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 18px;
+            font-size: 15px;
+            background: #007bff;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        
+    </style>
+
+</head>
+
+<body>
+
+
+
+
+<h2 class="section-title">Мультфильмы</h2>
+<div class="grid">
     {% for cartoon in cartoons %}
-        <div style="margin: 20px 0;">
-            <a href="{% url 'cartoon_detail' cartoon.pk %}">
-                {% if cartoon.image_url %}
-                    <img src="{{ cartoon.image_url }}" width="120"><br>
-                {% endif %}
-                {{ cartoon.title }}
-            </a>
+        <div class="card">
+            <img src="{{ cartoon.image_url }}" alt="">
+            <div class="card-title">{{ cartoon.title }}</div>
+            <a class="btn" href="{% url 'cartoon_detail' cartoon.pk %}">Подробнее</a>
         </div>
+    {% empty %}
+        <p>Нет мультфильмов</p>
     {% endfor %}
-{% else %}
-    <p>Мультфильмов нет</p>
-{% endif %}
+</div>
 
-<hr>
 
-<h2>Фильмы</h2>
-{% if films %}
+<h2 class="section-title">Фильмы</h2>
+<div class="grid">
     {% for film in films %}
-        <div style="margin: 20px 0;">
-            <a href="{% url 'film_detail' film.pk %}">
-                {% if film.image_url %}
-                    <img src="{{ film.image_url }}" width="120"><br>
-                {% endif %}
-                {{ film.title }}
-            </a>
+        <div class="card">
+            <img src="{{ film.image_url }}" alt="">
+            <div class="card-title">{{ film.title }}</div>
+            <a class="btn" href="{% url 'film_detail' film.pk %}">Подробнее</a>
         </div>
+    {% empty %}
+        <p>Нет фильмов</p>
     {% endfor %}
-{% else %}
-    <p>Фильмов нет</p>
-{% endif %}
+</div>
+
+
+<h2 class="section-title">Актёры</h2>
+<div class="grid">
+    {% for actor in actors %}
+        <div class="card">
+            <img src="{{ actor.image_url }}" alt="">
+            <div class="card-title">{{ actor.name }}</div>
+            <a class="btn" href="{% url 'actor_detail' actor.pk %}">Подробнее</a>
+        </div>
+    {% empty %}
+        <p>Нет актёров</p>
+    {% endfor %}
+</div>
+
+
+<h2 class="section-title">Товары</h2>
+<div class="grid">
+    {% for item in items %}
+        <div class="card">
+            <img src="{{ item.cartoon.image_url }}" alt="">
+            <div class="card-title">{{ item.name }} — {{ item.price }}$</div>
+            <a class="btn" href="#">Купить</a>
+        </div>
+    {% empty %}
+        <p>Нет товаров</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>

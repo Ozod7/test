@@ -1,0 +1,9 @@
+<h1>Актёры</h1>
+
+{% for actor in actors %}
+    <div>
+        <a href="{% url 'actor_detail' actor.pk %}">
+            {{ actor.name }}
+        </a>
+    </div>
+{% endfor %}

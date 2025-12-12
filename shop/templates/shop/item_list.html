@@ -1,0 +1,7 @@
+<h1>Товары</h1>
+
+{% for item in items %}
+    <div>
+        {{ item.name }} — {{ item.price }}$
+    </div>
+{% endfor %}
