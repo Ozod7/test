@@ -1,0 +1,29 @@
+<h1>{{ cartoon.title }} ({{ cartoon.year }})</h1>
+
+{% if cartoon.image_url %}
+<img src="{{ cartoon.image_url }}" width="240">
+{% endif %}
+
+<p>{{ cartoon.description }}</p>
+
+
+<h2>Актёры</h2>
+<ul>
+{% for a in actors %}
+    <li><a href="{% url 'actor_detail' a.pk %}">{{ a.name }}</a></li>
+{% empty %}
+    <li>Нет актёров</li>
+{% endfor %}
+</ul>
+
+<h2>Товары</h2>
+<ul>
+{% for item in items %}
+    <li>{{ item.name }} — {{ item.price }} руб.</li>
+{% empty %}
+    <li>Нет товаров</li>
+{% endfor %}
+</ul>
+<p>
+    <a href="{% url 'cartoon_list' %}">← Вернуться </a>
+</p>

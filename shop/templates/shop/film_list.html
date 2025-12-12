@@ -1,0 +1,14 @@
+<h1>Фильмы</h1>
+
+{% for film in films %}
+    <div style="margin: 20px 0;">
+        <a href="{% url 'film_detail' film.pk %}">
+            {% if film.image_url %}
+                <img src="{{ film.image_url }}" width="120"><br>
+            {% endif %}
+            {{ film.title }}
+        </a>
+    </div>
+{% empty %}
+    <p>Фильмов нет</p>
+{% endfor %}

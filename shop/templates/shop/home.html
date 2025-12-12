@@ -1,0 +1,35 @@
+<h1>Каталог</h1>
+
+<h2>Мультфильмы</h2>
+{% if cartoons %}
+    {% for cartoon in cartoons %}
+        <div style="margin: 20px 0;">
+            <a href="{% url 'cartoon_detail' cartoon.pk %}">
+                {% if cartoon.image_url %}
+                    <img src="{{ cartoon.image_url }}" width="120"><br>
+                {% endif %}
+                {{ cartoon.title }}
+            </a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Мультфильмов нет</p>
+{% endif %}
+
+<hr>
+
+<h2>Фильмы</h2>
+{% if films %}
+    {% for film in films %}
+        <div style="margin: 20px 0;">
+            <a href="{% url 'film_detail' film.pk %}">
+                {% if film.image_url %}
+                    <img src="{{ film.image_url }}" width="120"><br>
+                {% endif %}
+                {{ film.title }}
+            </a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Фильмов нет</p>
+{% endif %}

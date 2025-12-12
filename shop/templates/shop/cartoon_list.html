@@ -1,0 +1,12 @@
+<h1>Мультфильмы</h1>
+
+{% for c in cartoons %}
+    <div style="display:inline-block; margin:20px;">
+        <a href="{% url 'cartoon_detail' c.pk %}">
+            {% if c.image_url %}
+                <img src="{{ c.image_url }}" width="120"><br>
+            {% endif %}
+            {{ c.title }}
+        </a>
+    </div>
+{% endfor %}
